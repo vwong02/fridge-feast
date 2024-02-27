@@ -11,7 +11,7 @@ const FavouritesPage = ({ sessionCookie }) => {
   const [filteredFavRecipes, setFilteredFavRecipes] = useState([])
   const [sortedFavRecipes, setSortedFavRecipes] = useState([])
 
-  // Sory by most popular recipes by default 
+  // Sory by most popular recipes by default
   const [sortBy, setSortBy] = useState("spoonacularScore")
   const [sortOrder, setSortOrder] = useState("desc")
   const userid = sessionCookie.userid
@@ -63,15 +63,12 @@ const FavouritesPage = ({ sessionCookie }) => {
       if (!noConditionsChecked) {
         conditionsMatch = Object.keys(conditions).every((condition) => {
           const lowerCaseCondition = condition.toLowerCase()
-          console.log(
-            "🚀 ~ conditionsMatch ~ lowerCaseCondition:",
-            lowerCaseCondition
-          )
+          console.log("lowerCaseCondition: ", lowerCaseCondition)
           return recipe.diets.some((diet) =>
             diet.toLowerCase().includes(lowerCaseCondition)
           )
         })
-        console.log("🚀 ~ conditionsMatchs ~ recipe.diets:", recipe.diets)
+        console.log("recipe.diets: ", recipe.diets)
       }
 
       if (!noTimesChecked) {
@@ -89,11 +86,8 @@ const FavouritesPage = ({ sessionCookie }) => {
           }
         })
       }
-      console.log(
-        "🚀 ~ allFavRecipes.filter ~ conditionsMatch:",
-        conditionsMatch
-      )
-      console.log("🚀 ~ allFavRecipes.filter ~ timeMatch:", timeMatch)
+      console.log("allFavRecipes.filter ~ conditionsMatch:", conditionsMatch)
+      console.log("allFavRecipes.filter ~ timeMatch:", timeMatch)
       return conditionsMatch && timeMatch
     })
     // Update filtered recipes state
@@ -143,7 +137,8 @@ const FavouritesPage = ({ sessionCookie }) => {
               <select
                 id="sortby"
                 onChange={(e) => handleSortByChange(e.target.value)}
-                value={`${sortBy}-${sortOrder}`}>
+                value={`${sortBy}-${sortOrder}`}
+              >
                 <option value="spoonacularScore-desc">Most Popular</option>
                 <option value="readyInMinutes-desc">Time (desc)</option>
                 <option value="readyInMinutes-asc">Time (asc)</option>

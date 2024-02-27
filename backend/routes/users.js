@@ -5,57 +5,57 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express = require('express')
-const router  = express.Router()
-const { getUsers, addUser, loginUser } = require('../db/queries/user')
-const { spoonacularApiKey } = require("../db/connection")
+const express = require('express');
+const router = express.Router();
+const { getUsers, addUser, loginUser } = require('../db/queries/user');
+const { spoonacularApiKey } = require("../db/connection");
 
 router.get('/', (req, res) => {
-  const results = []
+  const results = [];
 
   getUsers()
     .then((users) => {
       users.forEach(user => {
-        results.push(user)
-      })
-      res.send(results)
+        results.push(user);
+      });
+      res.send(results);
     })
     .catch((err) => {
-      console.log("Error fetching users.", err)
-      throw err
-    })
-})
+      console.log("Error fetching users.", err);
+      throw err;
+    });
+});
 
 router.post('/auth', (req, res) => {
-  const email = req.body.email
-  const password = req.body.password
+  const email = req.body.email;
+  const password = req.body.password;
 
   loginUser(email, password)
     .then((result) => {
-      let isAuth = false
+      let isAuth = false;
       if (result !== undefined) {
-        isAuth = true
-        console.log("Login sucessfully!")
+        isAuth = true;
+        console.log("Login sucessfully!");
       } else {
-        isAuth = false
-        console.log("Login failed!")
+        isAuth = false;
+        console.log("Login failed!");
       }
       let randomToken = null;
-      if(isAuth){
+      if (isAuth) {
         const randomTokenLength = 5;
-        randomToken = (Math.random() + 1).toString(36).substring(2,2+randomTokenLength);
-        console.log("result at login", result)
-        res.send({ authToken: randomToken, userid: result.id })
-      }else{
+        randomToken = (Math.random() + 1).toString(36).substring(2, 2 + randomTokenLength);
+        console.log("result at login", result);
+        res.send({ authToken: randomToken, userid: result.id });
+      } else {
         console.log("Login failed!");
         res.status(401).send({ error: "Authentication failed" });
-      }      
+      }
     })
     .catch((err) => {
       console.error("Login error!", err);
       res.status(500).send({ error: "An unexpected error occurred" });
-    })
-})
+    });
+});
 
 router.post('/save', (req, res) => {
   const user = {
@@ -70,9 +70,8 @@ router.post('/save', (req, res) => {
     .then(users => {
       const existingUser = users.find(u => u.email === user.email);
       if (existingUser) {
-        // Email already in use, send an error response
-        console.log("Email already in use");
-        return res.status(409).send({ error: "Email is already in use" });
+        // Email already in use, throw an error
+        throw new Error("Email is already in use");
       }
       // Email is not in use, proceed with adding the user
       return addUser(user);
@@ -82,29 +81,16 @@ router.post('/save', (req, res) => {
       res.send(result);
     })
     .catch(err => {
-      console.error("Error creating the user. ", err);
-      res.status(500).send({ error: "An unexpected error occurred" });
+      if (err.message === "Email is already in use") {
+        console.log(err.message);
+        res.status(409).send({ error: err.message });
+      } else {
+        console.error("Error creating the user. ", err);
+        res.status(500).send({ error: "An unexpected error occurred" });
+      }
     });
+
 });
 
-// router.post('/save', (req, res) => {
-//   const user = {
-//     first_name:  req.body.firstName,
-//     last_name: req.body.lastName,
-//     email:  req.body.email,
-//     password: req.body.password
-//   }
-//   addUser(user)
-//     .then((result) => {
-//       console.log("Signup successfully")
-//       res.send(result)
-//     })
-//     .catch((err) => {
-//       console.error("Error creating the user. ", err)
-//       throw err
-//     })
-// })
 
-
-
-module.exports = router
+module.exports = router;

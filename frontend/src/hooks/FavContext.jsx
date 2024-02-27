@@ -12,11 +12,11 @@ export const FavouritesProvider = ({ children, sessionCookie }) => {
       axios
         .get(`http://localhost:3000/fav/list/${sessionCookie.userid}`)
         .then((response) => {
-          // console.log("🚀 ~ .then ~ response:", response)
+          // console.log("fav/list response: ", response)
 
           // Add the IDs of the favourite recipes to the isFav array
           const favIds = response.data.favs.map((recipe) => recipe.recipe_id)
-          // console.log("🚀 ~ .then ~ favIds:", favIds)∑
+          // console.log("favIds: ", favIds)
 
           setIsFav(favIds)
         })
@@ -32,7 +32,7 @@ export const FavouritesProvider = ({ children, sessionCookie }) => {
         userid: sessionCookie.userid,
         recipeid: recipeid,
       })
-      console.log("🚀 ~ addFavourite ~ response:", response)
+      console.log("addFavourite response: ", response)
       
       setIsFav((prevFavs) => [...prevFavs, recipeid])
     } catch (error) {
@@ -46,7 +46,7 @@ export const FavouritesProvider = ({ children, sessionCookie }) => {
         userid: sessionCookie.userid,
         recipeid: recipeid,
       })
-      console.log("🚀 ~ removeFavourite ~ response:", response)
+      console.log("removeFavourite response:", response)
 
       
       setIsFav((prevFavs) => prevFavs.filter((id) => id !== recipeid))

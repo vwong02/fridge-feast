@@ -68,16 +68,15 @@ router.post('/save', (req, res) => {
   // Check if the email already exists
   getUsers()
     .then(users => {
-      const existingUser = users.find(u => u.email === user.email);
+      const existingUser = users.find(existingUser => existingUser.email === user.email);
       if (existingUser) {
-        // Email already in use, throw an error
         throw new Error("Email is already in use");
       }
       // Email is not in use, proceed with adding the user
       return addUser(user);
     })
     .then(result => {
-      console.log("Signup successfully");
+      console.log("User signup successful!");
       res.send(result);
     })
     .catch(err => {

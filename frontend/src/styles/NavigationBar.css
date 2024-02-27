@@ -1,0 +1,56 @@
+.nav-bar-container {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #3a3755;
+  padding: 0 48px;
+}
+
+.dropdown-text {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+a.nav-link {
+  color: #f7f7ff;
+  font-size: 1.2rem;
+}
+
+a.nav-link:hover {
+  color: #bfbed6;
+}
+
+a.nav-link:focus {
+  color: #f7f7ff;
+}
+
+.logo-text {
+  font-family: "Protest Riot", sans-serif;
+  font-size: 2rem !important;
+  letter-spacing: 0.1rem;
+  color: #FFFFFF !important;
+  /* text-shadow: 0 0 2px #5D5A88; */
+  margin: auto;
+}
+
+.dropdown-toggle.show.nav-link {
+  color: #bfbed6 !important;
+}
+
+nav-link {
+  color: #f7f7ff !important;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 575.98px) {
+  a.nav-link {
+      font-size: 0.75rem;
+    }
+.logo-text {
+    font-family: "Protest Riot", sans-serif;
+    font-size: 1rem !important;
+    letter-spacing: 0.1rem;
+    color: #FFFFFF !important;
+    /* text-shadow: 0 0 2px #5D5A88; */
+    margin: auto;
+  }
+}

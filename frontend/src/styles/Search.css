@@ -1,0 +1,24 @@
+div.mb-4.row {
+  padding: 0;
+}
+
+.search-card {
+  padding: 2rem;
+}
+
+.load-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.sort-by-btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+#sortby {
+margin-left: 0.5rem;
+}

@@ -1,0 +1,25 @@
+.search-recipe-card {
+  padding: 0;
+  height: 22rem !important;
+}
+
+.search-recipe-card:hover {
+  box-shadow: 0 0 2px #3a3755 !important;;
+}
+
+.recipe-img:hover {
+  cursor: pointer;
+}
+
+.recipe-page-img {
+  width: 25rem;
+  border-radius: 0.375rem;
+  margin: 1rem 0 2rem 0;
+}
+
+.recipe-title-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -1,0 +1,11 @@
+#root {
+  height: 100vh;
+  /* This will ensure that the #root element takes up the full viewport height */
+  width: 100%;
+  /* This will ensure that the #root element takes up the full viewport width */
+  margin: 0;
+  padding: 0;
+  color: #3a3755;
+  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+  --bs-bg-opacity: 1;
+}

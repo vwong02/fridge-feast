@@ -1,0 +1,107 @@
+
+.signup-background {
+    background-image: url('https://stellaskitchenco.com/cdn/shop/files/tablescape_2.jpg?v=1693317520&width=3840'); 
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .signup-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+  }
+  
+  .signup-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .signup-form input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .password-container {
+    position: relative;
+    margin-bottom: 10px;
+  }
+  
+  .password-container input {
+    padding-right: 70px; 
+  }
+  
+  .toggle-password-button {
+    position: absolute;
+    right: 10px;
+    top: 67%; /* Center button vertically */
+    transform: translateY(-50%); /* Align center with input height */
+    width: 50px;
+    height: 25px;
+    padding: 0;
+    line-height: 25px; /*Align text vertically*/
+    font-size: 0.75em; 
+    background-color: #5D5A88;
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    color: white;
+    cursor: pointer;
+  }
+  
+  .toggle-password:focus {
+    outline: none;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .signup-form button:not(.toggle-password-button)  {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height:40px;
+    padding: 10px;
+    background-color: #5D5A88;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .signup-form button:hover {
+    background-color: #34334f;
+  }
+  
+  .login-redirect {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .login-redirect a {
+    color: #007bff;
+  }
+  
+  .login-redirect a:hover {
+    text-decoration: underline;
+  }
+
+  .password-warning {
+    color: red; 
+    margin: 0 0 10px 0; 
+    font-size: smaller;
+    text-align: end;
+  }

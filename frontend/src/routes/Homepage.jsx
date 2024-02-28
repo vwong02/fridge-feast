@@ -1,14 +1,9 @@
 import { useState, useEffect } from "react"
-import Button from "react-bootstrap/Button"
-import Card from "react-bootstrap/Card"
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
-import { Container } from "react-bootstrap"
 import axios from "axios"
 import FavButton from "../components/FavButton"
 import "../styles/Homepage.css"
 
-const Homepage = ({ sessionCookie }) => {  
+const Homepage = ({ sessionCookie }) => {
   const [randomRecipes, setRandomRecipes] = useState([])
 
   const getRandomRecipes = async () => {
@@ -35,7 +30,7 @@ const Homepage = ({ sessionCookie }) => {
     <div>
       {/* Header Section */}
       <div className="p-5 bg-secondary header-image">
-        <Container>
+        <div className="container">
           <h1 className="display-5 fw-bold header-title mb-4 p-1">
             The Ultimate Cooking Companion
           </h1>
@@ -45,29 +40,31 @@ const Homepage = ({ sessionCookie }) => {
             and let the app generate a variety of mouthwatering recipes tailored
             to your specific ingredients.
           </p>
-          <a href="/search">
-            <Button
-              className="btn btn-primary btn-lg"
-              type="button"
-              alt="explore-recipes-btn">
-              Explore Recipes
-            </Button>
+          <a
+            href="/search"
+            className="btn btn-primary btn-lg"
+            role="button"
+            aria-pressed="true"
+          >
+            Explore Recipes
           </a>
-        </Container>
+        </div>
       </div>
 
       {/* Featured Recipes Card Section */}
       <div className="p-5 bg-light">
-        <Container>
+        <div className="container">
           <h2 className="mb-4">Featured Recipes</h2>
-          <Row>
+          <div className="row">
             {randomRecipes.map((randomRecipe) => (
-              <Col xs={6} sm={6} md={6} lg={3} xl={3} key={randomRecipe.id} className="pb-5">
-                <Card className="home-recipe-card">
+              <div
+                className="col-6 col-sm-6 col-md-6 col-lg-3 col-xl-3 pb-5"
+                key={randomRecipe.id}
+              >
+                <div className="card home-recipe-card">
                   <a href={`/recipes/${randomRecipe.id}`}>
-                    <Card.Img
-                      variant="top"
-                      className="recipe-card-img"
+                    <img
+                      className="card-img-top recipe-card-img"
                       src={randomRecipe.image}
                       alt={randomRecipe.title}
                     />
@@ -83,18 +80,20 @@ const Homepage = ({ sessionCookie }) => {
                       />
                     </div>
                   )}
-                  <Card.Body>
-                    <Card.Title className="smaller-title">{randomRecipe.title}</Card.Title>
-                    <Card.Text className="smaller-text">
+                  <div className="card-body">
+                    <h5 className="card-title smaller-title">
+                      {randomRecipe.title}
+                    </h5>
+                    <p className="card-text smaller-text">
                       {randomRecipe.readyInMinutes} minutes | Serving Size:{" "}
                       {randomRecipe.servings}
-                    </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
+                    </p>
+                  </div>
+                </div>
+              </div>
             ))}
-          </Row>
-        </Container>
+          </div>
+        </div>
       </div>
     </div>
   )

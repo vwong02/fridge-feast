@@ -1,26 +1,25 @@
-import React, { useContext } from "react"
-import Card from "react-bootstrap/Card"
-// import FavouriteButton from "../components/FavouriteButton"
+import React from "react"
 import FavButton from "./FavButton"
 
 const RecipeCard = ({ recipe, sessionCookie }) => {
   return (
-    <Card className="search-recipe-card">
+    <div className="card search-recipe-card">
       <a href={`/recipes/${recipe.id}`}>
-        <Card.Img variant="top" className="recipe-img" src={recipe.image} />
+        <img
+          src={recipe.image}
+          className="card-img-top recipe-img"
+          alt="Recipe"
+        />
       </a>
-      <Card.Body>
+      <div className="card-body">
         {sessionCookie == null ? (
           <></>
         ) : (
-            <FavButton
-              sessionCookie={sessionCookie}
-              recipeid={recipe.id}
-            />
+          <FavButton sessionCookie={sessionCookie} recipeid={recipe.id} />
         )}
-        <Card.Title className="smaller-title">{recipe.title}</Card.Title>
-      </Card.Body>
-    </Card>
+        <h5 className="card-title smaller-title">{recipe.title}</h5>
+      </div>
+    </div>
   )
 }
 

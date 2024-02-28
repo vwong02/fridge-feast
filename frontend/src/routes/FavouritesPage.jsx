@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import { Container, Row, Col, Card } from "react-bootstrap"
 import FiltersMenu from "../components/FiltersMenu"
 import FavButton from "../components/FavButton"
 import "../styles/Favourites.css"
@@ -124,14 +123,14 @@ const FavouritesPage = ({ sessionCookie }) => {
   }, [sortBy, sortOrder, filteredFavRecipes])
 
   return (
-    <Container className="my-4">
-      <Row>
-        <Col md={3}>
+    <div className="container my-4">
+      <div className="row">
+        <div className="col-md-3">
           <FiltersMenu onFilterChange={handleFilterChange} />
-        </Col>
-        <Col md={9}>
+        </div>
+        <div className="col-md-9">
           <h1 className="my-4">Favourites</h1>
-          <Container className="mb-4">
+          <div className="container mb-4">
             <div className="sort-by-btn">
               <label htmlFor="sortby">Sort By: </label>
               <select
@@ -150,7 +149,7 @@ const FavouritesPage = ({ sessionCookie }) => {
                 </option>
               </select>
             </div>
-          </Container>
+          </div>
           {loading ? (
             <div>Loading...</div>
           ) : allFavRecipes.length === 0 ? (
@@ -161,14 +160,16 @@ const FavouritesPage = ({ sessionCookie }) => {
           ) : filteredFavRecipes.length === 0 ? (
             <div>Sorry, no favourite recipes match your filter criteria.</div>
           ) : (
-            <Row>
+            <div className="row">
               {sortedFavRecipes.map((favRecipe) => (
-                <Col key={favRecipe.id} xs={6} sm={6} md={6} lg={4} xl={3}>
-                  <Card className="recipe-card mb-4">
+                <div
+                  key={favRecipe.id}
+                  className="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3"
+                >
+                  <div className="card recipe-card mb-4">
                     <a href={`/recipes/${favRecipe.id}`}>
-                      <Card.Img
-                        variant="top"
-                        className="recipe-card-img"
+                      <img
+                        className="card-img-top recipe-card-img"
                         src={favRecipe.image}
                         alt={favRecipe.title}
                       />
@@ -177,23 +178,23 @@ const FavouritesPage = ({ sessionCookie }) => {
                       sessionCookie={sessionCookie}
                       recipeid={favRecipe.id}
                     />
-                    <Card.Body>
-                      <Card.Title className="smaller-title">
+                    <div className="card-body">
+                      <h5 className="card-title smaller-title">
                         {favRecipe.title}
-                      </Card.Title>
-                      <Card.Text className="smaller-text">
+                      </h5>
+                      <p className="card-text smaller-text">
                         {favRecipe.readyInMinutes} minutes | Serving Size:{" "}
                         {favRecipe.servings}
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-                </Col>
+                      </p>
+                    </div>
+                  </div>
+                </div>
               ))}
-            </Row>
+            </div>
           )}
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </div>
   )
 }
 

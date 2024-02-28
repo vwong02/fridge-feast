@@ -20,10 +20,6 @@ a {
   text-decoration: none !important;
 }
 
-/* a:hover {
-  opacity: 80%;
-} */
-
 body {
   margin: 0;
   /* display: flex; */
@@ -64,16 +60,12 @@ button:focus-visible {
     background-color: #ffffff;
   }
 
-  /* a:hover {
-    opacity: 80%;
-  } */
-
   button {
     background-color: #f9f9f9;
   }
 }
 
-.btn-primary {
+/* .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #5D5A88 !important;
   --bs-btn-border-color: #5D5A88 !important;
@@ -106,8 +98,8 @@ button:focus-visible {
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #5D5A88 !important;
   --bs-gradient: none;
-}
+} */
 
-.card {
+/* .card {
   color: #3a3755 !important;
-}
+} */

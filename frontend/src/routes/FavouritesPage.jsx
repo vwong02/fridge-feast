@@ -130,11 +130,12 @@ const FavouritesPage = ({ sessionCookie }) => {
           <FiltersMenu onFilterChange={handleFilterChange} />
         </Col>
         <Col md={9}>
-          <h1 className="my-4">Favourites</h1>
-          <Container className="mb-4">
-            <Form.Group controlId="sortby" className="sort-by-btn">
+          <h1 className="mt-4">Favourites</h1>
+          <div className="mb-4 sort-container">
+            <Form.Group controlId="sortby" className="sort-group">
               <Form.Label>Sort By: </Form.Label>
-              <Form.Control
+              <Form.Select
+              size="sm"
                 as="select"
                 onChange={(e) => handleSortByChange(e.target.value)}
                 value={`${sortBy}-${sortOrder}`}
@@ -148,9 +149,9 @@ const FavouritesPage = ({ sessionCookie }) => {
                 <option value="pricePerServing-asc">
                   Price Per Serving (asc)
                 </option>
-              </Form.Control>
+              </Form.Select>
             </Form.Group>
-          </Container>
+          </div>
           {loading ? (
             <div>Loading...</div>
           ) : allFavRecipes.length === 0 ? (
@@ -172,24 +173,29 @@ const FavouritesPage = ({ sessionCookie }) => {
                   xl={3}
                   className="mb-4"
                 >
-                  <Card className="recipe-card">
+                  <Card>
                     <Card.Link href={`/recipes/${favRecipe.id}`}>
                       <Card.Img
                         variant="top"
-                        className="recipe-card-img"
                         src={favRecipe.image}
                         alt={favRecipe.title}
                       />
                     </Card.Link>
-                    <FavButton
-                      sessionCookie={sessionCookie}
-                      recipeid={favRecipe.id}
-                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "10px",
+                        right: "10px",
+                      }}
+                    >
+                      <FavButton
+                        sessionCookie={sessionCookie}
+                        recipeid={favRecipe.id}
+                      />
+                    </div>
                     <Card.Body>
-                      <Card.Title>
-                        {favRecipe.title}
-                      </Card.Title>
-                      <Card.Text>
+                      <Card.Title className="smaller-text">{favRecipe.title}</Card.Title>
+                      <Card.Text className="small">
                         {favRecipe.readyInMinutes} minutes | Serving Size:{" "}
                         {favRecipe.servings}
                       </Card.Text>

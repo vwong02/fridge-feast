@@ -257,7 +257,7 @@ h1 {
 
 .h2,
 h2 {
-  font-size: calc(1.325rem + .9vw)
+  font-size: calc(1.325rem + .9vw);
 }
 
 @media (min-width:1200px) {
@@ -296,12 +296,13 @@ h4 {
 
 .h5,
 h5 {
-  font-size: 1.25rem
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .h6,
 h6 {
-  font-size: 1rem
+  font-size: 0.875rem
 }
 
 p {

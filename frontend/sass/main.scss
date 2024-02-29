@@ -44,7 +44,7 @@
   --bs-info: #29abe0;
   --bs-warning: #f47c3c;
   --bs-danger: #d9534f;
-  --bs-light: #f8f5f0;
+  --bs-light: #f5f5f5;
   --bs-dark: #3e3f3a;
   --bs-primary-rgb: 50, 93, 136;
   --bs-secondary-rgb: 142, 140, 132;
@@ -52,7 +52,7 @@
   --bs-info-rgb: 41, 171, 224;
   --bs-warning-rgb: 244, 124, 60;
   --bs-danger-rgb: 217, 83, 79;
-  --bs-light-rgb: 248, 245, 240;
+  --bs-light-rgb: 245, 245, 245;
   --bs-dark-rgb: 62, 63, 58;
   --bs-primary-text-emphasis: #142536;
   --bs-secondary-text-emphasis: #393835;
@@ -210,9 +210,9 @@ body {
   line-height: var(--bs-body-line-height);
   color: var(--bs-body-color);
   text-align: var(--bs-body-text-align);
-  background-color: var(--bs-body-bg);
+  background-color: var(--bs-light);
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: transparent
+  -webkit-tap-highlight-color: transparent;
 }
 
 hr {

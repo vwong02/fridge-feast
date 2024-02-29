@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react"
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Button,
-  DropdownButton,
-  Dropdown,
-} from "react-bootstrap"
+import { Container, Row, Col, Card, Button, Form } from "react-bootstrap"
 import axios from "axios"
 import SearchResultsCard from "../components/SearchResultsCard"
 import "../styles/Search.css"
@@ -71,11 +63,11 @@ function SearchResults({ sessionCookie }) {
   }
 
   return (
-    <div className="bg-light pt-5">
-      <Container>
+    <div>
+      <Container className="pt-5">
         <Row className="justify-content-center recipe-row">
           <Col>
-            <Card className="search-card">
+            <Card className="search-card p-4">
               <Card.Body>
                 <h2 className="mb-4">Find Recipes</h2>
                 <form onSubmit={handleSearchSubmit}>
@@ -101,14 +93,15 @@ function SearchResults({ sessionCookie }) {
 
       {recipes.length > 0 && (
         <Container>
-          {/* Sortby Dropdown */}
-          <Container>
-            <div className="sort-by-btn mt-5">
-              <label htmlFor="sortby">Sort By: </label>
-              <select
-                id="sortby"
+          <div className="mt-5 mb-4 sort-container">
+            <Form.Group controlId="sortby" className="sort-group">
+              <Form.Label>Sort By: </Form.Label>
+              <Form.Select
+                size="sm"
+                as="select"
                 onChange={(e) => handleSortByChange(e.target.value)}
-                value={`${sortBy}-${sortOrder}`}>
+                value={`${sortBy}-${sortOrder}`}
+              >
                 <option value="likes-desc">Most Popular</option>
                 <option value="unusedIngredientCount-desc">
                   Matching Ingredients (desc)
@@ -116,9 +109,9 @@ function SearchResults({ sessionCookie }) {
                 <option value="unusedIngredientCount-asc">
                   Matching Ingredients (asc)
                 </option>
-              </select>
-            </div>
-          </Container>
+              </Form.Select>
+            </Form.Group>
+          </div>
           <Row className="mt-3 justify-content-center">
             {recipes.slice(0, showIndex).map((recipe) => (
               <Col
@@ -128,7 +121,8 @@ function SearchResults({ sessionCookie }) {
                 md={4}
                 lg={3}
                 xl={3}
-                className="mb-4">
+                className="mb-4"
+              >
                 <SearchResultsCard
                   recipe={recipe}
                   onClick={handleRecipeClick}
@@ -140,7 +134,8 @@ function SearchResults({ sessionCookie }) {
               <div className="load-container">
                 <Button
                   className="btn btn-primary mb-4"
-                  onClick={() => handleClickLoadMore()}>
+                  onClick={() => handleClickLoadMore()}
+                >
                   Load More
                 </Button>
               </div>

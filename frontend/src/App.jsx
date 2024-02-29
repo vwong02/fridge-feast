@@ -39,7 +39,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className="bg-light">
       <FavouritesProvider sessionCookie={cookies.user}>
         <NavigationBar sessionCookie={cookies.user} />
         <CookiesProvider>
@@ -85,7 +85,7 @@ function App() {
           </BrowserRouter>
         </CookiesProvider>
       </FavouritesProvider>
-    </>
+    </div>
   )
 }
 

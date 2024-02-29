@@ -5,18 +5,24 @@ import FavButton from "./FavButton"
 const SearchResultsCard = ({ recipe, sessionCookie }) => {
   return (
     <Card className="search-recipe-card">
-      <a href={`/recipes/${recipe.id}`}>
+      <Card.Link href={`/recipes/${recipe.id}`}>
         <Card.Img variant="top" className="recipe-img" src={recipe.image} />
-      </a>
+      </Card.Link>
+
+      {sessionCookie == null ? (
+        <></>
+      ) : (
+        <div
+          style={{
+            position: "absolute",
+            top: "10px",
+            right: "10px",
+          }}
+        >
+          <FavButton sessionCookie={sessionCookie} recipeid={recipe.id} />
+        </div>
+      )}
       <Card.Body>
-        {sessionCookie == null ? (
-          <></>
-        ) : (
-            <FavButton
-              sessionCookie={sessionCookie}
-              recipeid={recipe.id}
-            />
-        )}
         <Card.Title className="smaller-title">{recipe.title}</Card.Title>
       </Card.Body>
     </Card>

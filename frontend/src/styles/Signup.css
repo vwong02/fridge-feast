@@ -1,4 +1,4 @@
-
+/* 
 .signup-background {
     background-image: url('https://stellaskitchenco.com/cdn/shop/files/tablescape_2.jpg?v=1693317520&width=3840'); 
     background-size: cover;
@@ -40,12 +40,13 @@
   
   .password-container input {
     padding-right: 70px; 
-  }
+  } */
   
   .toggle-password-button {
     position: absolute;
     right: 10px;
-    top: 67%; /* Center button vertically */
+    top: 67%; 
+    /* Center button vertically */
     transform: translateY(-50%); /* Align center with input height */
     width: 50px;
     height: 25px;
@@ -59,7 +60,7 @@
     cursor: pointer;
   }
   
-  .toggle-password:focus {
+  /* .toggle-password:focus {
     outline: none;
   }
 
@@ -104,4 +105,4 @@
     margin: 0 0 10px 0; 
     font-size: smaller;
     text-align: end;
-  }
+  } */

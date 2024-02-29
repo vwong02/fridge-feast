@@ -1,9 +1,5 @@
 nav.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1;
   background: var(--bs-primary);
-  color: var(--bs-white);
 }
 
 
@@ -22,10 +18,7 @@ a.nav-link:focus {
 
 .logo-text {
   font-family: "Protest Riot", sans-serif;
-  font-size: 2rem !important;
-  letter-spacing: 0.1rem;
-  margin: auto;
-  color: var(--bs-white);
+
 }
 
 /* .dropdown-toggle.show.nav-link {

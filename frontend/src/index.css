@@ -13,9 +13,10 @@
 
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
   --bs-bg-opacity: 1;
-}
+  
+} */
 
-a {
+/* a {
   font-weight: 500;
   text-decoration: none !important;
 }

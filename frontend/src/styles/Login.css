@@ -1,4 +1,4 @@
-
+/* 
 .login-background {
     background-image: url('https://stellaskitchenco.com/cdn/shop/files/tablescape_2.jpg?v=1693317520&width=3840'); 
     background-size: cover;
@@ -41,7 +41,7 @@
   .password-container input {
     padding-right: 70px; 
   }
-  
+   */
   .toggle-password-button {
     position: absolute;
     right: 10px;
@@ -59,7 +59,7 @@
     cursor: pointer;
   }
   
-  .toggle-password:focus {
+  /* .toggle-password:focus {
     outline: none;
   }
 
@@ -104,4 +104,4 @@
   .login-redirect a:hover {
     text-decoration: underline;
   }
-
+ */

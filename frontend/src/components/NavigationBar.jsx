@@ -10,8 +10,7 @@ const NavigationBar = ({ sessionCookie }) => {
   const userImage = <i className="fa-solid fa-user"></i>
 
   return (
-    <div className="nav-bar-container">
-      <Navbar>
+      <Navbar className="sticky-top">
         <Container>
           <Navbar.Brand href="/" className="logo-text">
             Fridge Feast
@@ -49,7 +48,6 @@ const NavigationBar = ({ sessionCookie }) => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </div>
   )
 }
 

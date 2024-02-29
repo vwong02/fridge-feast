@@ -131,7 +131,7 @@
   --bs-form-valid-color: #93c54b;
   --bs-form-valid-border-color: #93c54b;
   --bs-form-invalid-color: #d9534f;
-  --bs-form-invalid-border-color: #d9534f
+  --bs-form-invalid-border-color: #d9534f;
 }
 
 [data-bs-theme=dark] {
@@ -4502,15 +4502,15 @@ fieldset:disabled .btn {
 .navbar {
   --bs-navbar-padding-x: 0;
   --bs-navbar-padding-y: 0.5rem;
-  --bs-navbar-color: rgba(var(--bs-emphasis-color-rgb), 0.65);
-  --bs-navbar-hover-color: rgba(var(--bs-emphasis-color-rgb), 0.8);
-  --bs-navbar-disabled-color: rgba(var(--bs-emphasis-color-rgb), 0.3);
-  --bs-navbar-active-color: rgba(var(--bs-emphasis-color-rgb), 1);
+  --bs-navbar-color: rgba(var(--bs-light-rgb), 0.65);
+  --bs-navbar-hover-color: rgba(var(--bs-light-rgb), 0.8);
+  --bs-navbar-disabled-color: rgba(var(--bs-light-rgb), 0.3);
+  --bs-navbar-active-color: rgba(var(--bs-light-rgb), 1);
   --bs-navbar-brand-padding-y: 0.3125rem;
   --bs-navbar-brand-margin-end: 1rem;
-  --bs-navbar-brand-font-size: 1.25rem;
-  --bs-navbar-brand-color: rgba(var(--bs-emphasis-color-rgb), 1);
-  --bs-navbar-brand-hover-color: rgba(var(--bs-emphasis-color-rgb), 1);
+  --bs-navbar-brand-font-size: 2rem;
+  --bs-navbar-brand-color: rgba(var(--bs-light-rgb), 1);
+  --bs-navbar-brand-hover-color: rgba(var(--bs-light-rgb), 1);
   --bs-navbar-nav-link-padding-x: 0.5rem;
   --bs-navbar-toggler-padding-y: 0.25rem;
   --bs-navbar-toggler-padding-x: 0.75rem;
@@ -4559,7 +4559,7 @@ fieldset:disabled .btn {
 .navbar-nav {
   --bs-nav-link-padding-x: 0;
   --bs-nav-link-padding-y: 0.5rem;
-  --bs-nav-link-font-weight: ;
+  --bs-nav-link-font-weight: 1rem;
   --bs-nav-link-color: var(--bs-navbar-color);
   --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
   --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color);
@@ -13906,11 +13906,17 @@ fieldset:disabled .btn {
 .dropdown-menu .dropdown-item,
 .nav-pills .nav-link,
 .nav-tabs .nav-link,
-.navbar .nav-link,
 .pagination,
 .sandstone,
 .tooltip {
   font-size: 13px;
+  font-weight: 500;
+  line-height: 22px;
+  text-transform: uppercase
+}
+
+.navbar .nav-link {
+  font-size: 1rem;
   font-weight: 500;
   line-height: 22px;
   text-transform: uppercase

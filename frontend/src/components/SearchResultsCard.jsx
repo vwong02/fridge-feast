@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import Card from "react-bootstrap/Card"
 import FavButton from "./FavButton"
 
-const RecipeCard = ({ recipe, sessionCookie }) => {
+const SearchResultsCard = ({ recipe, sessionCookie }) => {
   return (
     <Card className="search-recipe-card">
       <a href={`/recipes/${recipe.id}`}>
@@ -23,4 +23,4 @@ const RecipeCard = ({ recipe, sessionCookie }) => {
   )
 }
 
-export default RecipeCard
+export default SearchResultsCard

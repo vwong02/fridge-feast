@@ -9,7 +9,7 @@ import {
   Dropdown,
 } from "react-bootstrap"
 import axios from "axios"
-import RecipeCard from "../components/RecipeCard"
+import SearchResultsCard from "../components/SearchResultsCard"
 import "../styles/Search.css"
 
 const loadMoreCount = 12
@@ -129,7 +129,7 @@ function SearchResults({ sessionCookie }) {
                 lg={3}
                 xl={3}
                 className="mb-4">
-                <RecipeCard
+                <SearchResultsCard
                   recipe={recipe}
                   onClick={handleRecipeClick}
                   sessionCookie={sessionCookie}

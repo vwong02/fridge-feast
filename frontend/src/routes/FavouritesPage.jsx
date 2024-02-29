@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Container, Row, Col, Card, Form, Button } from "react-bootstrap"
 import axios from "axios"
 import FiltersMenu from "../components/FiltersMenu"
 import FavButton from "../components/FavButton"
@@ -123,18 +124,18 @@ const FavouritesPage = ({ sessionCookie }) => {
   }, [sortBy, sortOrder, filteredFavRecipes])
 
   return (
-    <div className="container my-4">
-      <div className="row">
-        <div className="col-md-3">
+    <Container className="my-4">
+      <Row>
+        <Col md={3}>
           <FiltersMenu onFilterChange={handleFilterChange} />
-        </div>
-        <div className="col-md-9">
+        </Col>
+        <Col md={9}>
           <h1 className="my-4">Favourites</h1>
-          <div className="container mb-4">
-            <div className="sort-by-btn">
-              <label htmlFor="sortby">Sort By: </label>
-              <select
-                id="sortby"
+          <Container className="mb-4">
+            <Form.Group controlId="sortby" className="sort-by-btn">
+              <Form.Label>Sort By: </Form.Label>
+              <Form.Control
+                as="select"
                 onChange={(e) => handleSortByChange(e.target.value)}
                 value={`${sortBy}-${sortOrder}`}
               >
@@ -147,54 +148,60 @@ const FavouritesPage = ({ sessionCookie }) => {
                 <option value="pricePerServing-asc">
                   Price Per Serving (asc)
                 </option>
-              </select>
-            </div>
-          </div>
+              </Form.Control>
+            </Form.Group>
+          </Container>
           {loading ? (
             <div>Loading...</div>
           ) : allFavRecipes.length === 0 ? (
             <div>
               You don't have any favourited recipes. Explore recipes{" "}
-              <a href="/search">here</a>!
+              <Button href="/search">here</Button>!
             </div>
           ) : filteredFavRecipes.length === 0 ? (
             <div>Sorry, no favourite recipes match your filter criteria.</div>
           ) : (
-            <div className="row">
+            <Row>
               {sortedFavRecipes.map((favRecipe) => (
-                <div
+                <Col
                   key={favRecipe.id}
-                  className="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3"
+                  xs={6}
+                  sm={6}
+                  md={6}
+                  lg={4}
+                  xl={3}
+                  className="mb-4"
                 >
-                  <div className="card recipe-card mb-4">
-                    <a href={`/recipes/${favRecipe.id}`}>
-                      <img
-                        className="card-img-top recipe-card-img"
+                  <Card className="recipe-card">
+                    <Card.Link href={`/recipes/${favRecipe.id}`}>
+                      <Card.Img
+                        variant="top"
+                        className="recipe-card-img"
                         src={favRecipe.image}
                         alt={favRecipe.title}
                       />
-                    </a>
+                    </Card.Link>
                     <FavButton
                       sessionCookie={sessionCookie}
                       recipeid={favRecipe.id}
                     />
-                    <div className="card-body">
-                      <h5 className="card-title smaller-title">
+                    <Card.Body>
+                      <Card.Title>
                         {favRecipe.title}
-                      </h5>
-                      <p className="card-text smaller-text">
+                      </Card.Title>
+                      <Card.Text>
                         {favRecipe.readyInMinutes} minutes | Serving Size:{" "}
                         {favRecipe.servings}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Col>
               ))}
-            </div>
+            </Row>
           )}
-        </div>
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 

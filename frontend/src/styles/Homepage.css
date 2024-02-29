@@ -12,7 +12,6 @@
 */
 
 @media (max-width: 992px) {
-
   .header-text,
   .header-title {
     background-color: rgba(255, 255, 255, .7);
@@ -50,12 +49,6 @@
   background-size: cover;
   background-position: 90% 12%;
   background-repeat: no-repeat;
-}
-
-.fav-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
 }
 
 /* .header-text {

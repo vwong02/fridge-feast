@@ -1,4 +1,13 @@
 import React, { useState, useEffect } from "react"
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  DropdownButton,
+  Dropdown,
+} from "react-bootstrap"
 import axios from "axios"
 import RecipeCard from "../components/RecipeCard"
 import "../styles/Search.css"
@@ -63,11 +72,11 @@ function SearchResults({ sessionCookie }) {
 
   return (
     <div className="bg-light pt-5">
-      <div className="container">
-        <div className="row justify-content-center recipe-row">
-          <div className="col">
-            <div className="card search-card">
-              <div className="card-body">
+      <Container>
+        <Row className="justify-content-center recipe-row">
+          <Col>
+            <Card className="search-card">
+              <Card.Body>
                 <h2 className="mb-4">Find Recipes</h2>
                 <form onSubmit={handleSearchSubmit}>
                   <div className="form-group">
@@ -80,27 +89,26 @@ function SearchResults({ sessionCookie }) {
                       onChange={(e) => setSearchTerm(e.target.value)}
                     />
                   </div>
-                  <button type="submit" className="btn btn-primary mt-4">
+                  <Button variant="primary" type="submit" className="mt-4">
                     Submit
-                  </button>
+                  </Button>
                 </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
 
       {recipes.length > 0 && (
-        <div className="container">
+        <Container>
           {/* Sortby Dropdown */}
-          <div className="container">
+          <Container>
             <div className="sort-by-btn mt-5">
               <label htmlFor="sortby">Sort By: </label>
               <select
                 id="sortby"
                 onChange={(e) => handleSortByChange(e.target.value)}
-                value={`${sortBy}-${sortOrder}`}
-              >
+                value={`${sortBy}-${sortOrder}`}>
                 <option value="likes-desc">Most Popular</option>
                 <option value="unusedIngredientCount-desc">
                   Matching Ingredients (desc)
@@ -110,32 +118,35 @@ function SearchResults({ sessionCookie }) {
                 </option>
               </select>
             </div>
-          </div>
-          <div className="row mt-3 justify-content-center">
+          </Container>
+          <Row className="mt-3 justify-content-center">
             {recipes.slice(0, showIndex).map((recipe) => (
-              <div
+              <Col
                 key={recipe.id}
-                className="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 mb-4"
-              >
+                xs={6}
+                sm={6}
+                md={4}
+                lg={3}
+                xl={3}
+                className="mb-4">
                 <RecipeCard
                   recipe={recipe}
                   onClick={handleRecipeClick}
                   sessionCookie={sessionCookie}
                 />
-              </div>
+              </Col>
             ))}
             {showIndex < 48 && (
               <div className="load-container">
-                <button
+                <Button
                   className="btn btn-primary mb-4"
-                  onClick={() => handleClickLoadMore()}
-                >
+                  onClick={() => handleClickLoadMore()}>
                   Load More
-                </button>
+                </Button>
               </div>
             )}
-          </div>
-        </div>
+          </Row>
+        </Container>
       )}
     </div>
   )

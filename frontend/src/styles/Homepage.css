@@ -41,9 +41,9 @@
 }
 
 
-.home-recipe-card:hover {
+/* .home-recipe-card:hover {
   box-shadow: 0 0 2px #3a3755 !important;
-}
+} */
 
 .home-recipe-card-img:hover {
   cursor: pointer;
@@ -61,12 +61,6 @@
 
 .header-text {
   width: 50% !important;
-  color: #3a3755;
-  /* text-shadow: 0 0 2px #28263b; */
-}
-
-.header-title {
-  color: #3a3755;
 }
 
 

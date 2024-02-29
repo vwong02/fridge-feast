@@ -1,12 +1,19 @@
-/* .fav-btn {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: end;
-  margin: 0.75rem;
+.fav-btn-badge {
+  position: relative;
+  top: 0;
+  right: 0;
   cursor: pointer;
+  border: 0.1px rgba(223, 215, 202, 0.75) solid;
+  background-color: #FFFFFF;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* 
 .filters-container {
   border-right: 0.18rem solid #dee2e6;
   height: 100%;

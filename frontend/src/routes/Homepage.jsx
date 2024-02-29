@@ -34,7 +34,7 @@ const Homepage = ({ sessionCookie }) => {
   return (
     <div>
       {/* Header Section */}
-      <div className="p-5 bg-secondary header-image">
+      <div className="p-5 header-image">
         <Container>
           <h1 className="display-5 fw-bold header-title mb-4 p-1">
             The Ultimate Cooking Companion
@@ -58,7 +58,7 @@ const Homepage = ({ sessionCookie }) => {
       </div>
 
       {/* Featured Recipes Card Section */}
-      <div className="p-5 bg-light">
+      <div className="p-5">
         <Container>
           <h2 className="mb-4">Featured Recipes</h2>
           <Row>
@@ -72,31 +72,33 @@ const Homepage = ({ sessionCookie }) => {
                 key={randomRecipe.id}
                 className="pb-5"
               >
-                <Card className="home-recipe-card">
-                  <a href={`/recipes/${randomRecipe.id}`}>
+                <Card>
+                  <Card.Link href={`/recipes/${randomRecipe.id}`}>
                     <Card.Img
                       variant="top"
                       className="recipe-card-img"
                       src={randomRecipe.image}
                       alt={randomRecipe.title}
                     />
-                  </a>
-                  {sessionCookie == null ? (
-                    <></>
-                  ) : (
-                    <div className="fav-button-container">
-                      <FavButton
-                        sessionCookie={sessionCookie}
-                        userid={sessionCookie.userid}
-                        recipeid={randomRecipe.id}
-                      />
-                    </div>
-                  )}
+                    </Card.Link>
+                    {sessionCookie && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "10px",
+                          right: "10px",
+                        }}
+                      >
+                        <FavButton
+                          sessionCookie={sessionCookie}
+                          userid={sessionCookie.userid}
+                          recipeid={randomRecipe.id}
+                        />
+                      </div>
+                    )}
                   <Card.Body>
-                    <Card.Title className="smaller-title">
-                      {randomRecipe.title}
-                    </Card.Title>
-                    <Card.Text className="smaller-text">
+                    <Card.Title>{randomRecipe.title}</Card.Title>
+                    <Card.Text>
                       {randomRecipe.readyInMinutes} minutes | Serving Size:{" "}
                       {randomRecipe.servings}
                     </Card.Text>

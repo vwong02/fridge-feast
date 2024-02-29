@@ -2,43 +2,6 @@ nav.navbar {
   background: var(--bs-primary);
 }
 
-
-/* a.nav-link {
-  color: #f7f7ff;
-  font-size: 1.2rem;
-}
-
-a.nav-link:hover {
-  color: #bfbed6;
-}
-
-a.nav-link:focus {
-  color: #f7f7ff;
-} */
-
 .logo-text {
   font-family: "Protest Riot", sans-serif;
-
 }
-
-/* .dropdown-toggle.show.nav-link {
-  color: #bfbed6 !important;
-} */
-
-/* nav-link {
-  color: #f7f7ff !important;
-  font-size: 1.2rem;
-} */
-
-/* @media (max-width: 575.98px) {
-  a.nav-link {
-      font-size: 0.75rem;
-    }
-.logo-text {
-    font-family: "Protest Riot", sans-serif;
-    font-size: 1rem !important;
-    letter-spacing: 0.1rem;
-    color: #FFFFFF !important;
-    margin: auto;
-  }
-} */

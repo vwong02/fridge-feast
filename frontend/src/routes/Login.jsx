@@ -80,17 +80,17 @@ const Login = ({ onLogin }) => {
                 {showPassword ? "Hide" : "Show"}
               </Button>
             </InputGroup>
-          </Form>
 
-          <div className="mt-3 text-center">
-            <Button variant="primary" type="submit">
-              Login
-            </Button>
+            <div className="mt-3 text-center">
+              <Button variant="primary" type="submit">
+                Login
+              </Button>
 
-            <div className="mt-3">
-              Don't have an account? <a href="/signup">Sign Up</a>
+              <div className="mt-3">
+                Don't have an account? <a href="/signup">Sign Up</a>
+              </div>
             </div>
-          </div>
+          </Form>
         </Card>
       </Container>
     </div>

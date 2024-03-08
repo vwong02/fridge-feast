@@ -2,6 +2,14 @@ import { useState } from "react"
 import "../styles/Signup.css"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import {
+  Container,
+  Form,
+  Button,
+  Card,
+  InputGroup,
+  Alert,
+} from "react-bootstrap"
 
 // TODO : Setup : Once user login, redirect to homepage (not showing signup page)
 const Signup = () => {
@@ -12,7 +20,9 @@ const Signup = () => {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [passwordWarning, setPasswordWarning] = useState("")
+  // const [passwordWarning, setPasswordWarning] = useState("")
+  const [errorMessage, setErrorMessage] = useState(null)
+
   const APIURL = "http://0.0.0.0:3000/users/save"
   const navigate = useNavigate()
 
@@ -31,101 +41,129 @@ const Signup = () => {
       })
       .catch((error) => {
         console.error("Error signup", error)
+        console.log("Error", error.message)
+        setErrorMessage("Error signing up. Please try again later.")
       })
   }
 
   const handlePasswordChange = (e) => {
-    if (e.target.value.length < 8) {
-      setPasswordWarning("*Password must be at least 8 characters")
-    } else {
-      setPasswordWarning("") // Clear the warning
-    }
     setPassword(e.target.value)
   }
 
   return (
     <div className="signup-background">
-      <div className="signup-container">
-        <h1 className="signup-title">SIGN UP</h1>
-        <form className="signup-form" onSubmit={handleSubmit}>
-          <label htmlFor="first-name">First Name</label>
-          <input
-            id="first-name"
-            type="text"
-            placeholder="Enter first name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-          <label htmlFor="last-name">Last Name</label>
-          <input
-            id="last-name"
-            type="text"
-            placeholder="Enter last name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            placeholder="Example@gmail.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <div className="password-container">
-            <label htmlFor="password">Password</label>
-            <input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              placeholder="Must be at least 8 characters"
-              value={password}
-              onChange={handlePasswordChange}
-              required
-              minLength={8}
-            />
-            <button
-              type="button" // Set type as button to prevent form submission
-              onClick={() => setShowPassword(!showPassword)}
-              className="toggle-password-button"
+      <Container>
+        <Card className="px-5 py-4 mx-auto my-5 signup-card">
+          <h2 className="text-center">Sign Up</h2>
+
+          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+
+          <Form onSubmit={handleSubmit}>
+            <Form.Group>
+              <Form.Label>First Name</Form.Label>
+              <InputGroup className="mb-2">
+                <Form.Control
+                  id="first-name"
+                  type="text"
+                  placeholder="Enter first name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                />
+              </InputGroup>
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>Last Name</Form.Label>
+              <InputGroup className="mb-2">
+                <Form.Control
+                  id="last-name"
+                  type="text"
+                  placeholder="Enter last name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  required
+                />
+              </InputGroup>
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>Email</Form.Label>
+              <InputGroup className="mb-2">
+                <Form.Control
+                  id="email"
+                  type="email"
+                  placeholder="Example@gmail.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </InputGroup>
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>Password</Form.Label>
+              <InputGroup className="mb-2">
+                <Form.Control
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Must be at least 8 characters"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  required
+                  minLength={8}
+                  autoComplete="auto"
+                />
+                <Button
+                  variant="outline-secondary"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "Hide" : "Show"}
+                </Button>
+              </InputGroup>
+            </Form.Group>
+
+            {/* {passwordWarning && (
+              <div className="password-warning">{passwordWarning}</div>
+            )} */}
+
+            <Form.Group>
+              <Form.Label>Confirm Password</Form.Label>
+              <InputGroup>
+                <Form.Control
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="Confirm password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                  minLength={8}
+                  autoComplete="auto"
+                />
+                <Button
+                  variant="outline-secondary"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="toggle-password-button"
+                >
+                  {showConfirmPassword ? "Hide" : "Show"}
+                </Button>
+              </InputGroup>
+            </Form.Group>
+          </Form>
+
+          <div className="mt-3 text-center">
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={handleSubmit}
+              style={{ width: "fit-content" }}
             >
-              {showPassword ? "Hide" : "Show"}
-            </button>
-          </div>
-          {passwordWarning && (
-            <div className="password-warning">{passwordWarning}</div>
-          )}
-          <div className="password-container">
-            <label htmlFor="confirm-password">Confirm Password</label>
-            <input
-              id="confirm-password"
-              type={showConfirmPassword ? "text" : "password"}
-              placeholder="Confirm password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-              minLength={8}
-            />
-            <button
-              type="button" // Set type as button to prevent form submission
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="toggle-password-button"
-            >
-              {showConfirmPassword ? "Hide" : "Show"}
-            </button>
-          </div>
-          <div className="button-container">
-            <button type="submit" className="signup-form-button">
               Sign up
-            </button>
+            </Button>
           </div>
-        </form>
-        <p className="login-redirect">
-          Already have an account? <a href="/login">Log in</a>
-        </p>
-      </div>
+          <div className="mt-3 text-center">
+            Already have an account? <a href="/login">Log in</a>
+          </div>
+        </Card>
+      </Container>
     </div>
   )
 }

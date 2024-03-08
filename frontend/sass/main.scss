@@ -213,6 +213,7 @@ body {
   background-color: var(--bs-light);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+  
 }
 
 hr {
@@ -4526,7 +4527,7 @@ fieldset:disabled .btn {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x)
+  padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x);
 }
 
 .navbar>.container,
@@ -4539,7 +4540,7 @@ fieldset:disabled .btn {
   display: flex;
   flex-wrap: inherit;
   align-items: center;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
 .navbar-brand {
@@ -5027,7 +5028,8 @@ fieldset:disabled .btn {
   background-color: var(--bs-card-bg);
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
-  border-radius: var(--bs-card-border-radius)
+  border-radius: var(--bs-card-border-radius);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .card>hr {

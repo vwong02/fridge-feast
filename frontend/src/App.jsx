@@ -11,7 +11,7 @@ import RecipePage from "./routes/RecipePage"
 import NavigationBar from "./components/NavigationBar"
 import FavouritesPage from "./routes/FavouritesPage"
 import { FavouritesProvider } from "./hooks/FavContext"
-
+import "./styles/App.css"
 
 
 const RedirectTo = () => {
@@ -39,7 +39,7 @@ function App() {
   }
 
   return (
-    <div className="bg-light">
+    <div className="app-container">
       <FavouritesProvider sessionCookie={cookies.user}>
         <NavigationBar sessionCookie={cookies.user} />
         <CookiesProvider>

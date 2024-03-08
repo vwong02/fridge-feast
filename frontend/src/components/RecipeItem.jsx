@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Container, Row, Col, Image, ListGroup, Card } from "react-bootstrap"
+import { Container, Row, Col, Image, Card } from "react-bootstrap"
 import axios from "axios"
 import { useLocation } from "react-router-dom"
 import "../styles/RecipePage.css"
@@ -31,21 +31,19 @@ const RecipeItem = ({ sessionCookie }) => {
 
   return (
     <Container className="my-5">
-      <Card className="p-5">
+      <Card className="p-5" style={{ width: "75%" }}>
         <Row>
           <Col>
-            <div className="recipe-title-container">
+            <div className="d-flex flex-row align-items-center justify-content-between">
               <h2>{recipeById.title}</h2>
               {sessionCookie == null ? (
                 <></>
               ) : (
-                <div className="fav-button-container">
-                  <FavButton
-                    addNew={true}
-                    userid={sessionCookie.userid}
-                    recipeid={recipeById.id}
-                  />
-                </div>
+                <FavButton
+                  addNew={true}
+                  userid={sessionCookie.userid}
+                  recipeid={recipeById.id}
+                />
               )}
             </div>
             <p>
@@ -56,14 +54,15 @@ const RecipeItem = ({ sessionCookie }) => {
               src={recipeById.image}
               alt={recipeById.title}
               fluid
-              className="recipe-page-img"
+              rounded
+              className="my-4"
             />
           </Col>
         </Row>
 
         <Row>
           <Col xs={12} md={12} lg={6}>
-            <h3>Ingredients</h3>
+            <h3 className="my-4">Ingredients</h3>
             <ul className="mb-5">
               {recipeById.extendedIngredients.map((ingredient, index) => (
                 <li key={index}>{ingredient.original}</li>
@@ -75,7 +74,7 @@ const RecipeItem = ({ sessionCookie }) => {
             {recipeById.analyzedInstructions &&
               recipeById.analyzedInstructions.length > 0 && (
                 <>
-                  <h3>Directions</h3>
+                  <h3 className="my-4">Directions</h3>
                   <ol>
                     {recipeById.analyzedInstructions[0].steps.map(
                       (step, index) => (

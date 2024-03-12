@@ -1,15 +1,25 @@
 import { useState } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
-import { Container, Form, Button, Card, InputGroup } from "react-bootstrap"
+import {
+  Container,
+  Form,
+  Button,
+  Card,
+  InputGroup,
+  Toast,
+  ToastContainer,
+} from "react-bootstrap"
 import "../styles/Login.css"
+import toast from "react-hot-toast"
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [authToken, setAuthToken] = useState(null)
-  const APIURL = "http://0.0.0.0:3000/users/auth"
+  const [errorMessage, setErrorMessage] = useState("")
+  const [showErrorMessage, setShowErrorMessage] = useState(false)
   const navigate = useNavigate()
 
   // Handle form submission
@@ -17,31 +27,23 @@ const Login = ({ onLogin }) => {
     event.preventDefault()
 
     axios
-      .post(APIURL, { email: email, password: password })
+      .post("http://localhost:3000/users/auth", {
+        email: email,
+        password: password,
+      })
       .then((response) => {
         const returnAuthToken = response.data.authToken
-        console.log("login response.data", response.data)
         setAuthToken(returnAuthToken)
         onLogin({ authToken: returnAuthToken, userid: response.data.userid })
         navigate("/")
       })
       .catch((error) => {
-        if (error.response && error.response.status === 409) {
-          // Email already in use
-          console.error(
-            "Email is already in use: ",
-            error.response.data.message
-          )
-          // Handle this case by showing an error message to the user
-          // For example, you can set an error state to display a message to the user
-        } else {
-          console.error("Error logging in :", error)
+        if (!error.response.status) {
+          toast.error("Server is offline")
+        } else if (error.response.status === 401) {
+          toast.error("Incorrect email or password. Please try again!")
         }
       })
-  }
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value)
   }
 
   return (
@@ -49,7 +51,6 @@ const Login = ({ onLogin }) => {
       <Container>
         <Card className="p-5 m-auto login-card">
           <h2 className="text-center">Login</h2>
-
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Label>Email</Form.Label>
@@ -70,7 +71,7 @@ const Login = ({ onLogin }) => {
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
                 value={password}
-                onChange={handlePasswordChange}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               ></Form.Control>
               <Button

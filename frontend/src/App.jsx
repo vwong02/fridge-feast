@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 import { CookiesProvider, useCookies } from "react-cookie"
+import { Toaster } from "react-hot-toast"
 import Signup from "./routes/Signup"
 import Login from "./routes/Login"
 import Logout from "./routes/Logout"
@@ -12,7 +13,6 @@ import NavigationBar from "./components/NavigationBar"
 import FavouritesPage from "./routes/FavouritesPage"
 import { FavouritesProvider } from "./hooks/FavContext"
 import "./styles/App.css"
-
 
 const RedirectTo = () => {
   const navigate = useNavigate()
@@ -40,6 +40,13 @@ function App() {
 
   return (
     <div className="app-container">
+      <Toaster
+        position="top-center"
+        gutter={8}
+        toastOptions={{
+          duration: 3000,
+        }}
+      />
       <FavouritesProvider sessionCookie={cookies.user}>
         <NavigationBar sessionCookie={cookies.user} />
         <CookiesProvider>

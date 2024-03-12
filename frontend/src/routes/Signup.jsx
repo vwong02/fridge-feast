@@ -10,6 +10,7 @@ import {
   InputGroup,
   Alert,
 } from "react-bootstrap"
+import toast from "react-hot-toast"
 
 // TODO : Setup : Once user login, redirect to homepage (not showing signup page)
 const Signup = () => {
@@ -37,12 +38,15 @@ const Signup = () => {
         password: password,
       })
       .then((response) => {
+        toast.success("Account created successfully. Please log in.")
         navigate("/login")
       })
       .catch((error) => {
-        console.error("Error signup", error)
-        console.log("Error", error.message)
-        setErrorMessage("Error signing up. Please try again later.")
+        if (error.response.status == 409) {
+          toast.error("Email already in use. Please log in or try another email.")
+        } else {
+          toast.error("Error signing up. Please try again later.")
+        }
       })
   }
 
@@ -55,8 +59,6 @@ const Signup = () => {
       <Container>
         <Card className="px-5 py-4 mx-auto my-5 signup-card">
           <h2 className="text-center">Sign Up</h2>
-
-          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
 
           <Form onSubmit={handleSubmit}>
             <Form.Group>

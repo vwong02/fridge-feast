@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from "react"
+import toast from "react-hot-toast";
 
 const Logout = ({onLogout}) => {
     const navigate = useNavigate();

@@ -51,7 +51,7 @@ const Homepage = ({ sessionCookie }) => {
               type="button"
               alt="explore-recipes-btn"
             >
-              Explore Recipes
+              EXPLORE RECIPES
             </Button>
           </a>
         </Container>

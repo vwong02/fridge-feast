@@ -133,7 +133,7 @@ function SearchResults({ sessionCookie }) {
             {showIndex < 48 && (
               <div className="load-container">
                 <Button
-                  className="btn btn-primary mb-4"
+                  className="btn btn-primary mb-5 mt-2"
                   onClick={() => handleClickLoadMore()}
                 >
                   Load More

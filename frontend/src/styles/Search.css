@@ -10,3 +10,8 @@
   flex-direction: column;
   justify-content: end;
 }
+
+.load-container {
+  display: flex;
+  justify-content: center;
+}

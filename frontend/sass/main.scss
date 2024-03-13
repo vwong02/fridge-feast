@@ -391,12 +391,12 @@ sup {
 }
 
 a {
-  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
-  text-decoration: underline
+  color: rgba(var(--bs-primary-rgb), var(--bs-link-opacity, 1));
+  text-decoration: none
 }
 
 a:hover {
-  --bs-link-color-rgb: var(--bs-link-hover-color-rgb)
+  color: rgba(var(--bs-primary-rgb), var(--bs-link-opacity, 0.7))
 }
 
 a:not([href]):not([class]),

@@ -131,36 +131,39 @@ const FavouritesPage = ({ sessionCookie }) => {
         </Col>
         <Col md={9}>
           <h1 className="mt-4">Favourites</h1>
-          <div className="mb-4 sort-container">
-            <Form.Group controlId="sortby" className="sort-group">
-              <Form.Label>Sort By: </Form.Label>
-              <Form.Select
-              size="sm"
-                as="select"
-                onChange={(e) => handleSortByChange(e.target.value)}
-                value={`${sortBy}-${sortOrder}`}
-              >
-                <option value="spoonacularScore-desc">Most Popular</option>
-                <option value="readyInMinutes-desc">Time (desc)</option>
-                <option value="readyInMinutes-asc">Time (asc)</option>
-                <option value="pricePerServing-desc">
-                  Price Per Serving (desc)
-                </option>
-                <option value="pricePerServing-asc">
-                  Price Per Serving (asc)
-                </option>
-              </Form.Select>
-            </Form.Group>
-          </div>
+          {(allFavRecipes.length > 0 && filteredFavRecipes.length > 0) && (
+            <div className="mb-4 sort-container">
+              <Form.Group controlId="sortby" className="sort-group">
+                <Form.Label>Sort By: </Form.Label>
+                <Form.Select
+                  size="sm"
+                  as="select"
+                  onChange={(e) => handleSortByChange(e.target.value)}
+                  value={`${sortBy}-${sortOrder}`}
+                >
+                  <option value="spoonacularScore-desc">Most Popular</option>
+                  <option value="readyInMinutes-desc">Time (desc)</option>
+                  <option value="readyInMinutes-asc">Time (asc)</option>
+                  <option value="pricePerServing-desc">
+                    Price Per Serving (desc)
+                  </option>
+                  <option value="pricePerServing-asc">
+                    Price Per Serving (asc)
+                  </option>
+                </Form.Select>
+              </Form.Group>
+            </div>
+          )}
+
           {loading ? (
             <div>Loading...</div>
           ) : allFavRecipes.length === 0 ? (
-            <div>
+            <p>
               You don't have any favourited recipes. Explore recipes{" "}
-              <Button href="/search">here</Button>!
-            </div>
+              <a href="/search">here</a>.
+            </p>
           ) : filteredFavRecipes.length === 0 ? (
-            <div>Sorry, no favourite recipes match your filter criteria.</div>
+            <p className="mt-4">Sorry, no favourite recipes match your filter criteria.</p>
           ) : (
             <Row>
               {sortedFavRecipes.map((favRecipe) => (
@@ -194,7 +197,9 @@ const FavouritesPage = ({ sessionCookie }) => {
                       />
                     </div>
                     <Card.Body>
-                      <Card.Title className="smaller-text">{favRecipe.title}</Card.Title>
+                      <Card.Title className="smaller-text">
+                        {favRecipe.title}
+                      </Card.Title>
                       <Card.Text className="small">
                         {favRecipe.readyInMinutes} minutes | Serving Size:{" "}
                         {favRecipe.servings}

@@ -27,32 +27,20 @@ router.get('/', (req, res) => {
 });
 
 router.post('/auth', (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
+  const { email, password } = req.body;
 
   loginUser(email, password)
     .then((result) => {
-      let isAuth = false;
-      if (result !== undefined) {
-        isAuth = true;
-        console.log("Login sucessfully!");
-      } else {
-        isAuth = false;
-        console.log("Login failed!");
-      }
-      let randomToken = null;
-      if (isAuth) {
+      if (result) {
         const randomTokenLength = 5;
-        randomToken = (Math.random() + 1).toString(36).substring(2, 2 + randomTokenLength);
-        console.log("result at login", result);
+        const randomToken = (Math.random() + 1).toString(36).substring(2, 2 + randomTokenLength);
         res.send({ authToken: randomToken, userid: result.id });
       } else {
-        console.log("Login failed!");
-        res.status(401).send({ error: "Authentication failed" });
+        res.status(401).send({ error: "Invalid email or password. Please try again" });
       }
     })
     .catch((err) => {
-      console.error("Login error!", err);
+      console.error("An unexpected error occurred", err);
       res.status(500).send({ error: "An unexpected error occurred" });
     });
 });

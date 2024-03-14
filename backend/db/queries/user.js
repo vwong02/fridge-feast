@@ -8,7 +8,7 @@ const addUser = (user) => {
     .then(hash => {
       return dbPool.query(`INSERT INTO users (first_name, last_name, email, password)
           VALUES ($1, $2, $3, $4)`,
-        [ user.first_name, user.last_name, user.email, hash ]);
+        [user.first_name, user.last_name, user.email, hash]);
     })
     .then(() => {
       console.log('User added successfully!');
@@ -22,21 +22,21 @@ const addUser = (user) => {
 
 const loginUser = (email, password) => {
   return dbPool.query(`SELECT * FROM users WHERE email = $1`,
-    [ email ])
+    [email])
     .then((data) => {
       if (data.rows.length > 0) {
-        return bcrypt.compare(password, data.rows[ 0 ].password)
+        return bcrypt.compare(password, data.rows[0].password)
           .then(match => {
             if (match) {
-              console.log('User logon successfully!');
-              return data.rows[ 0 ];
+              console.log('User login successful');
+              return data.rows[0];
             } else {
-              console.log('User logon failed!');
+              console.log('User login failed');
               return null;
             }
           });
       } else {
-        console.log('User logon failed!');
+        console.log('User login failed');
         return null;
       }
     })

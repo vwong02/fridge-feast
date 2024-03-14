@@ -14,7 +14,6 @@ const SimilarRecipes = () => {
         const response = await axios.get(
           `http://localhost:3000/recipes/${recipeId}/similar`
         )
-        console.log("getSimilarRecipes response.data: ", response.data)
         setSimilarRecipes(response.data)
       } catch (error) {
         console.error("Error fetching similar recipe:", error)

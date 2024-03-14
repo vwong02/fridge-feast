@@ -63,12 +63,10 @@ const FavouritesPage = ({ sessionCookie }) => {
       if (!noConditionsChecked) {
         conditionsMatch = Object.keys(conditions).every((condition) => {
           const lowerCaseCondition = condition.toLowerCase()
-          console.log("lowerCaseCondition: ", lowerCaseCondition)
           return recipe.diets.some((diet) =>
             diet.toLowerCase().includes(lowerCaseCondition)
           )
         })
-        console.log("recipe.diets: ", recipe.diets)
       }
 
       if (!noTimesChecked) {
@@ -86,8 +84,6 @@ const FavouritesPage = ({ sessionCookie }) => {
           }
         })
       }
-      console.log("allFavRecipes.filter ~ conditionsMatch:", conditionsMatch)
-      console.log("allFavRecipes.filter ~ timeMatch:", timeMatch)
       return conditionsMatch && timeMatch
     })
     // Update filtered recipes state

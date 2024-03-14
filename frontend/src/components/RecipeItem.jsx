@@ -36,15 +36,13 @@ const RecipeItem = ({ sessionCookie }) => {
           <Col>
             <div className="d-flex flex-row align-items-center justify-content-between">
               <h2>{recipeById.title}</h2>
-              {sessionCookie == null ? (
-                <></>
-              ) : (
+              {sessionCookie && 
                 <FavButton
                   addNew={true}
                   userid={sessionCookie.userid}
                   recipeid={recipeById.id}
                 />
-              )}
+              }
             </div>
             <p>
               <strong>Time:</strong> {recipeById.readyInMinutes} minutes |{" "}

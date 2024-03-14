@@ -4,21 +4,20 @@ import axios from "axios"
 import SearchResultsCard from "../components/SearchResultsCard"
 import "../styles/Search.css"
 
-const loadMoreCount = 12
+// const loadMoreCount = 12
 
-function chunkArray(array, chunkSize) {
-  const chunks = []
-  for (let i = 0; i < array.length; i += chunkSize) {
-    chunks.push(array.slice(i, i + chunkSize))
-  }
-  return chunks
-}
+// function chunkArray(array, chunkSize) {
+//   const chunks = []
+//   for (let i = 0; i < array.length; i += chunkSize) {
+//     chunks.push(array.slice(i, i + chunkSize))
+//   }
+//   return chunks
+// }
 
 function SearchResults({ sessionCookie }) {
   const [searchTerm, setSearchTerm] = useState("")
   const [originalRecipes, setOriginalRecipes] = useState([]) // New state for original recipes
   const [recipes, setRecipes] = useState([])
-  const [showIndex, setShowIndex] = useState(loadMoreCount)
   const [sortBy, setSortBy] = useState("likes") // Default sort by likes
   const [sortOrder, setSortOrder] = useState("desc") // Default sort order descending
 
@@ -26,7 +25,7 @@ function SearchResults({ sessionCookie }) {
     e.preventDefault()
     try {
       const response = await axios.get(`http://localhost:3000/s/${searchTerm}`)
-      setOriginalRecipes(response.data) // Set original recipes
+      setOriginalRecipes(response.data) 
       setRecipes(response.data)
     } catch (error) {
       console.error("Error fetching recipes with ingredient:", error)
@@ -52,11 +51,6 @@ function SearchResults({ sessionCookie }) {
     })
     setRecipes(sortedRecipes)
   }, [sortBy, sortOrder, originalRecipes])
-
-  const handleClickLoadMore = () => {
-    const newIndexEnd = showIndex + loadMoreCount
-    setShowIndex(newIndexEnd)
-  }
 
   const handleRecipeClick = (recipeId) => {
     setSelectedRecipeId(recipeId)
@@ -90,7 +84,6 @@ function SearchResults({ sessionCookie }) {
           </Col>
         </Row>
       </Container>
-
       {recipes.length > 0 && (
         <Container>
           <div className="mt-5 mb-4 sort-container">
@@ -113,7 +106,7 @@ function SearchResults({ sessionCookie }) {
             </Form.Group>
           </div>
           <Row className="mt-3 justify-content-center">
-            {recipes.slice(0, showIndex).map((recipe) => (
+            {recipes.map((recipe) => (
               <Col
                 key={recipe.id}
                 xs={6}
@@ -130,16 +123,6 @@ function SearchResults({ sessionCookie }) {
                 />
               </Col>
             ))}
-            {showIndex < 48 && (
-              <div className="load-container">
-                <Button
-                  className="btn btn-primary mb-5 mt-2"
-                  onClick={() => handleClickLoadMore()}
-                >
-                  Load More
-                </Button>
-              </div>
-            )}
           </Row>
         </Container>
       )}

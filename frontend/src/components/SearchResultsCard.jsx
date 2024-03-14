@@ -9,9 +9,7 @@ const SearchResultsCard = ({ recipe, sessionCookie }) => {
         <Card.Img variant="top" className="recipe-img" src={recipe.image} />
       </Card.Link>
 
-      {sessionCookie == null ? (
-        <></>
-      ) : (
+      {sessionCookie &&
         <div
           style={{
             position: "absolute",
@@ -21,7 +19,7 @@ const SearchResultsCard = ({ recipe, sessionCookie }) => {
         >
           <FavButton sessionCookie={sessionCookie} recipeid={recipe.id} />
         </div>
-      )}
+      }
       <Card.Body>
         <Card.Title className="smaller-title">{recipe.title}</Card.Title>
       </Card.Body>

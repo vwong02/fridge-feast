@@ -14,6 +14,7 @@ import FavouritesPage from "./routes/FavouritesPage"
 import { FavouritesProvider } from "./hooks/FavContext"
 import "./styles/App.css"
 
+// Redirect to homepage (if already logged in)
 const RedirectTo = () => {
   const navigate = useNavigate()
   useEffect(() => {
